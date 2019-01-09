@@ -106,7 +106,39 @@ cmake    "$EXIV2"  $CM_GENERAL                              \
 
 cmake    --build . --config Release
 popd
-cp       gcc64/*    build/exiv2/bin
+
+# copy run-time DLLs 
+compiler=gcc
+arch=$COMPILER_PREFIX
+type=posix
+version=7.3
+
+
+# /usr/lib/gcc/x86_64-w64-mingw32/7.3-posix/libstdc++-6.dll
+# /usr/lib/gcc/x86_64-w64-mingw32/7.3-posix/libgcc_s_seh-1.dll
+for dll in libstdc++-6.dll libgcc_s_seh-1.dll ; do
+    dll=/usr/lib/$compiler/$arch/$version-$type/$dll
+    echo cp $dll build/exiv2/bin/
+    if [ ! -e $dll ] ; then
+        echo "*** error DLL $dll does not exist ***"
+        exit 1
+    else
+        cp $dll build/exiv2/bin/
+    fi
+done
+
+# /usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll
+for dll in libwinpthread-1.dll; do
+    dll=/usr/$arch/lib/$dll
+    echo cp $dll build/exiv2/bin/
+    if [ ! -e $dll ] ; then
+        echo "*** error DLL $dll does not exist ***"
+        exit 1
+    else
+        cp $dll build/exiv2/bin/
+    fi
+done
+
 wine     build/exiv2/bin/exiv2 --verbose --version
 
 # That's all Folks!

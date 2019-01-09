@@ -70,8 +70,40 @@ cmake    ../../.. $CM_GENERAL                           \
          -DCMAKE_INSTALL_PREFIX=$PWD
 
 cmake    --build . --config Release
-cp       ../gcc64/*.dll     bin/
-wine     bin/exiv2 -vV
+
+# copy run-time DLLs to output bin
+arch=$(    grep ^target_host=      conan-build.profile | cut -d= -f 2 | tr -d ' ')
+version=$( grep ^compiler.version= conan-build.profile | cut -d= -f 2 | tr -d ' ')
+compiler=$(grep ^compiler=         conan-build.profile | cut -d= -f 2 | tr -d ' ')
+type=posix
+
+# /usr/lib/gcc/x86_64-w64-mingw32/7.3-posix/libstdc++-6.dll
+# /usr/lib/gcc/x86_64-w64-mingw32/7.3-posix/libgcc_s_seh-1.dll
+for dll in libstdc++-6.dll libgcc_s_seh-1.dll ; do
+    dll=/usr/lib/$compiler/$arch/$version-$type/$dll
+    echo cp $dll bin
+    if [ ! -e $dll ] ; then
+        echo "*** error DLL $dll does not exist ***"
+        exit 1
+    else
+        cp $dll bin
+    fi
+done
+
+# /usr/x86_64-w64-mingw32/lib/libwinpthread-1.dll
+for dll in libwinpthread-1.dll; do
+    dll=/usr/$arch/lib/$dll
+    echo cp $dll bin
+    if [ ! -e $dll ] ; then
+        echo "*** error DLL $dll does not exist ***"
+        exit 1
+    else
+        cp $dll bin
+    fi
+done
+
+# run a sanity test on the built exiv2
+wine     bin/exiv2 --verbose --version
 
 # That's all Folks!
 ##
