@@ -9,7 +9,7 @@
 .DS_Store
 .idea/*
 cmake-*
-build*
+build/*
 po/POTFILES
 po/remove-potcdate.sed
 po/stamp-po
