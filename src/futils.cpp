@@ -37,12 +37,12 @@
 #include <unistd.h>                     // for stat()
 #endif
 
-#if defined(WIN32)
+#if   defined(WIN32)
 #include <windows.h>
 #include <psapi.h>  // For access to GetModuleFileNameEx
 #endif
 
-#if defined_MSC_VER
+#if   defined(_MSC_VER)
 #define S_ISREG(m)      (((m) & S_IFMT) == S_IFREG)
 #elif defined(__APPLE__)
 #include <libproc.h>
