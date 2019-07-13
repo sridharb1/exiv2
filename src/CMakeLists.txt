@@ -145,7 +145,6 @@ endif()
 
 set_target_properties( exiv2lib_int PROPERTIES
     POSITION_INDEPENDENT_CODE ON
-    COMPILE_DEFINITIONS exiv2lib_STATIC
 )
 
 
