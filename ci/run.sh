@@ -43,6 +43,7 @@ fi
 pushd .
 cd bin
 $EXIV2_VALGRIND ./unit_tests
+./basicerror
 popd
 
 if [ -n "$COVERAGE" ]; then
