@@ -116,6 +116,11 @@ add_executable(remotetest remotetest.cpp)
 list(APPEND APPLICATIONS remotetest)
 
 # ******************************************************************************
+# BasicError symbols regression test
+add_executable(basicerror basicerror.cpp)
+list(APPEND APPLICATIONS basicerror)
+
+# ******************************************************************************
 foreach(application ${APPLICATIONS})
     target_link_libraries(${application} PRIVATE exiv2lib)
     if( EXIV2_ENABLE_PNG )
