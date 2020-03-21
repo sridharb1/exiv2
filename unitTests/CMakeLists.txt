@@ -1,4 +1,7 @@
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
+set(GTEST_LIBRARY "E:\\Projects\\googletest\\build\\googletest\\x64\\Release\\gtest.lib")
+set(GTEST_MAIN_LIBRARY "E:\\Projects\\googletest\\build\\googletest\\x64\\Release\\gtest_main.lib")
+set(GTEST_INCLUDE_DIR "E:\\Projects\\googletest\\googletest\\include")
 
 get_target_property(exiv2lib_SOURCES exiv2lib SOURCES)
 get_target_property(exiv2lib_int_SOURCES exiv2lib_int SOURCES)

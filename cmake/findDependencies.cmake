@@ -21,11 +21,14 @@ endif( )
 
 if( EXIV2_ENABLE_WEBREADY )
     if( EXIV2_ENABLE_CURL )
+        set( CURL_INCLUDE_DIR "E:\\Projects\\curl\\include")
         find_package(CURL REQUIRED)
     endif()
 
     if( EXIV2_ENABLE_SSH )
-        find_package(libssh CONFIG REQUIRED)
+        set( LIBSSH_LIBRARIES "E:\\Projects\\libssh\\build\\src\\x64\\Release\\ssh.lib")
+        set( LIBSSH_INCLUDE_DIR "E:\\Projects\\libssh\\include")
+#        find_package(libssh REQUIRED)
         # Define an imported target to have compatibility with <=libssh-0.9.0
         # libssh-0.9.1 is broken regardless.
         if(NOT TARGET ssh)

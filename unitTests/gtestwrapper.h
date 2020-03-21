@@ -7,6 +7,7 @@
         #pragma warning(disable : 4275)
         #pragma warning(disable : 4996)
 #endif
+#undef GTEST_LINKED_AS_SHARED_LIBRARY
 #include <gtest/gtest.h>
 #ifdef _MSC_VER
         #pragma warning(pop)

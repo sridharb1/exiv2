@@ -447,6 +447,7 @@ namespace Exiv2 {
             SXMPMeta::RegisterNamespace("http://ns.adobe.com/camera-raw-saved-settings/1.0/", "crss",NULL);
             SXMPMeta::RegisterNamespace("http://www.audio/", "audio",NULL);
             SXMPMeta::RegisterNamespace("http://www.video/", "video",NULL);
+			SXMPMeta::RegisterNamespace("http://vidyasridhar.no-ip.org/xmpSBTagInfo/", "SBTag", nullptr);
 #else
             SXMPMeta::RegisterNamespace("http://ns.adobe.com/lightroom/1.0/", "lr");
             SXMPMeta::RegisterNamespace("http://rs.tdwg.org/dwc/index.htm", "dwc");
@@ -470,6 +471,7 @@ namespace Exiv2 {
             SXMPMeta::RegisterNamespace("http://ns.adobe.com/camera-raw-saved-settings/1.0/", "crss");
             SXMPMeta::RegisterNamespace("http://www.audio/", "audio");
             SXMPMeta::RegisterNamespace("http://www.video/", "video");
+			SXMPMeta::RegisterNamespace("http://vidyasridhar.no-ip.org/xmpSBTagsInfo/", "SBTags");
 #endif
         }
         return initialized_;

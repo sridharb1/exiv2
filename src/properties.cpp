@@ -101,6 +101,7 @@ namespace Exiv2 {
     extern const XmpPropertyInfo xmpLrInfo[];
     extern const XmpPropertyInfo xmpAcdseeInfo[];
     extern const XmpPropertyInfo xmpGPanoInfo[];
+	extern const XmpPropertyInfo xmpSBTagsInfo[];
 
     extern const XmpNsInfo xmpNsInfo[] = {
         // Schemas   -   NOTE: Schemas which the XMP-SDK doesn't know must be registered in XmpParser::initialize - Todo: Automate this
@@ -141,6 +142,7 @@ namespace Exiv2 {
         { "http://purl.org/dc/terms/",                    "dcterms",        xmpDctermsInfo,   N_("Qualified Dublin Core schema")                }, // Note: used as properties under dwc:record
         { "http://ns.acdsee.com/iptc/1.0/",               "acdsee",         xmpAcdseeInfo,    N_("ACDSee XMP schema")                           },
         { "http://ns.google.com/photos/1.0/panorama/",    "GPano",          xmpGPanoInfo,     N_("Google Photo Sphere XMP schema")              },
+		{ "http://vidyasridhar.no-ip.org/xmpSBTagsInfo/", "SBTags",         xmpSBTagsInfo,    N_("Sridhar Boovaraghavan Tags Info Schema")      },
 
 
         // Structures
@@ -1326,6 +1328,21 @@ namespace Exiv2 {
         // End of list marker
         { 0, 0, 0, invalidTypeId, xmpInternal, 0 }
     };
+
+	extern const XmpPropertyInfo xmpSBTagsInfo[] = {
+		{ "Description",					N_("Description"),						"Text",					xmpText, xmpExternal,   N_("Sridhar Boovaraghavan Tag Generator")   },
+		{ "Created",						N_("Date Created"),						"Date",					xmpText, xmpExternal,   N_("Date the tags were first created")   },
+		{ "Modified",						N_("Date Modified"),					"Date",					xmpText, xmpExternal,   N_("Date the tags were last modified (= created if not modified since creation)")   },
+		{ "TimesModified",					N_("Times Modified"),					"Integer",				xmpText, xmpExternal,   N_("Number of times tags have been updated since creation (= 0 if not modified since creation)")   },
+		{ "Version",						N_("Tag Version"),						"Text",                 xmpText, xmpExternal,   N_("Version of the tags currently saved")   },
+		{ "Filename",						N_("AES encrypted local filepath"),		"Text",					xmpText, xmpExternal,   N_("AES encrypted local filepath")   },
+		{ "Albums",							N_("List of Albums"),					"seq Albums",           xmpSeq,	 xmpExternal,   N_("List of Albums this photo is part of, array of strings like {\"Album 1\", \"Album 2\"}")   },
+		{ "Tags",							N_("List of Tags"),						"seq Tags",				xmpSeq,	 xmpExternal,   N_("List of Tags for this photo, array of strings like {\"Tag 1\", \"Tag 2\"}")   },
+		{ "Faces",							N_("List of Faces"),					"seq Faces",			xmpSeq,	 xmpExternal,   N_("List of Faces (only names) for this photo, array of strings like {\"Face 1\", \"Face 2\"}")   },
+
+		// End of list marker
+		{ 0, 0, 0, invalidTypeId, xmpInternal, 0 }
+	};
 
     extern const XmpPropertyInfo xmpVideoInfo[] = {
         { "Album",                  N_("Album"),                            "Text",                     xmpText, xmpExternal, N_("The name of the album.")   },
